@@ -12,40 +12,40 @@ class Store {
     }
 
     setUp() {
-        let mountainDew = new Product('md', 'Mountain Dew', 2.00, '//placehold.it/200x200', 15)
-        let drPepper = new Product('dp', 'Dr Pepper', 1.00, '//placehold.it/200x200', 3)
-        let dietCoke = new Product('dc', 'Diet Coke', 1.00, '//placehold.it/200x200', 1)
-        let rootBeer = new Product('rb', 'Root Beer', 2.00, '//placehold.it/200x200', 8)
-        let rockstar = new Product('rs', 'Rockstar Energy', 4.00, '//placehold.it/200x200', 5)
+        let mountainDew = new Product('md', 'Mountain Dew', 2.00, '../assets/mountaindew.png', 15)
+        let drPepper = new Product('dp', 'Dr Pepper', 1.00, '../assets/drpepper.jpg', 3)
+        let dietCoke = new Product('dc', 'Diet Coke', 1.00, '../assets/dietcoke.jpeg', 1)
+        let rootBeer = new Product('rb', 'Root Beer', 2.00, '../assets/rootbeer.jpeg', 8)
+        let rockstar = new Product('rs', 'Rockstar Energy', 4.00, '../assets/rockstar.jpg', 5)
 
         this.products.push(mountainDew, drPepper, dietCoke, rootBeer, rockstar);
         let template = `
             <div>
-                <div><img src="${mountainDew.img}" alt="mountain dew" /></div>
+                <div class="pictures"><img src="${mountainDew.img}" alt="mountain dew" /></div>
                 <h3>${mountainDew.name}</h3>
                 <h4>$ ${mountainDew.price}</h3>
                 <button onclick="app.controllers.myStore.addToCart('${mountainDew.id}')">Buy</button>
             </div>
             <div>
-                <div><img src="${drPepper.img}" alt="mountain dew" /></div>
+                <div class="pictures"><img src="${drPepper.img}" alt="dr pepper" /></div>
                 <h3>${drPepper.name}</h3>
                 <h4>$ ${drPepper.price}</h3>
                 <button onclick="app.controllers.myStore.addToCart('${drPepper.id}')">Buy</button>
              </div>
              <div>
-                <div><img src="${dietCoke.img}" alt="mountain dew" /></div>
+                <div class="pictures"><img src="${dietCoke.img}" alt="diet coke" /></div>
                 <h3>${dietCoke.name}</h3>
                 <h4>$ ${dietCoke.price}</h3>
                 <button onclick="app.controllers.myStore.addToCart('${dietCoke.id}')">Buy</button>
             </div>
             <div>
-                <div><img src="${rootBeer.img}" alt="mountain dew" /></div>
+                <div class="pictures"><img src="${rootBeer.img}" alt="root beer" /></div>
                 <h3>${rootBeer.name}</h3>
                 <h4>$ ${rootBeer.price}</h3>
                 <button onclick="app.controllers.myStore.addToCart('${rootBeer.id}')">Buy</button>
             </div>
             <div>
-                <div><img src="${rockstar.img}" alt="mountain dew" /></div>
+                <div class="pictures"><img src="${rockstar.img}" alt="rockstar" /></div>
                 <h3>${rockstar.name}</h3>
                 <h4>$ ${rockstar.price}</h3>
                 <button onclick="app.controllers.myStore.addToCart('${rockstar.id}')">Buy</button>
@@ -82,17 +82,18 @@ class Store {
 
     calculateTotal() {
         this.total = (this.calculateSubTotal() + this.calculateTax())
-
         return this.total
     }
 
     pay() {
-        this.vault += this.calculateSubTotal()
+        this.vault = 0
+        this.vault = this.calculateSubTotal()
         return {
-            total: this.total,
-            tax: this.tax,
-            subtotal: this.subTotal
+            total: this.total = 0,
+            tax: this.tax = 0,
+            subtotal: this.subTotal = 0
         }
+        this.draw()
     }
     draw() {
         let cart = `
@@ -100,7 +101,7 @@ class Store {
             <h2>SubTotal: $${this.subTotal}</h2>
             <h2>Tax: $${this.tax}</h2>
             <h2>Total: $${this.total}</h2>
-            <button onclick="App.controllers.myStore.pay()>Pay Now</button>
+            <button onclick="app.controllers.myStore.pay("")">Pay Now</button>
         </div>
         `
         document.getElementById('cart').innerHTML = cart

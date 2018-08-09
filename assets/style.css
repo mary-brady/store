@@ -1,0 +1,7 @@
+.pictures {
+    display: flex;
+    height: auto; 
+    width: auto; 
+    max-width: 300px; 
+    max-height: 400px;
+}
